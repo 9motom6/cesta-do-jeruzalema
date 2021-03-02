@@ -12,13 +12,13 @@ export class AppComponent implements OnInit,  OnDestroy {
   title = 'cesta-do-jeruzalema';
 
   destroy$: Subject<void> = new Subject<void>();
-  tasks: any[] = [];
+  tasks: string = "";
   constructor(private appService: ApiService) {}
 
   ngOnInit() {
-    this.appService.getTrackings().pipe(takeUntil(this.destroy$)).subscribe((tasks: any[]) => {
+    this.appService.getTrackings().pipe(takeUntil(this.destroy$)).subscribe((tasks: {text: string}) => {
       console.log(tasks);
-      this.tasks = tasks;
+      this.tasks = tasks.text;
     });
   }
 
