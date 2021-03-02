@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ApiService} from "./api.service";
 import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs";
+import {Entry} from "./models";
 
 @Component({
   selector: 'app-root',
@@ -16,9 +17,9 @@ export class AppComponent implements OnInit,  OnDestroy {
   constructor(private appService: ApiService) {}
 
   ngOnInit() {
-    this.appService.getTrackings().pipe(takeUntil(this.destroy$)).subscribe((tasks: {text: string}) => {
+    this.appService.getEntries().pipe(takeUntil(this.destroy$)).subscribe((tasks: { text: string; entries: Entry[] }) => {
       console.log(tasks);
-      this.tasks = tasks.text;
+      this.tasks = tasks.text + JSON.stringify(tasks.entries);
     });
   }
 
