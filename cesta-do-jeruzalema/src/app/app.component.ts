@@ -24,6 +24,13 @@ export class AppComponent implements OnInit,  OnDestroy {
   }
 
 
+  addEntry() {
+    console.log("Add entry");
+    this.appService.addEntry().pipe(takeUntil(this.destroy$)).subscribe((resp) => {
+      console.log(resp);
+    });
+  }
+
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.unsubscribe();

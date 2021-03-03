@@ -16,4 +16,8 @@ export class ApiService {
   getEntries(): Observable<{ text: string, entries: Entry[] }> {
     return this.http.get(this.rootUrl + '/entries') as Observable<{ text: string, entries: Entry[] }>;
   }
+
+  addEntry(): Observable<Object> {
+    return this.http.post(this.rootUrl + "/entries/add", {name: "Horys"});
+  }
 }
