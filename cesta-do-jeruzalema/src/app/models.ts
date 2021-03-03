@@ -1,5 +1,11 @@
 export interface Entry {
-  name: string;
-  date: number;
-  amount: number;
+    name: string;
+    amount: number;
+    id: string;
+    _ts: number;
+}
+
+export interface CreateEntry {
+    name: string;
+    amount: number;
 }
