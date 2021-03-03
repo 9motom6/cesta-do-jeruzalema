@@ -2,7 +2,7 @@ export interface Entry {
     name: string;
     amount: number;
     id: string;
-    ts: number;
+    date: Date;
 }
 
 export interface CreateEntry {
