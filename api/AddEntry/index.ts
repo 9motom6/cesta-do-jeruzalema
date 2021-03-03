@@ -12,14 +12,16 @@ const httpTrigger: AzureFunction = async (context: Context, req: HttpRequest): P
     if (!isEntryValid(newEntry)) {
         context.res = {
             status: 400,
-            body: {message: "Cannot create invalid entry"}
+            body: { message: "Cannot create invalid entry" }
         };
         return;
     }
 
+    context.bindings.entries = JSON.stringify(newEntry);
     context.res = {
-        body: {message: `Created ${newEntry.amount}km entry for ${newEntry.name}`}
+        body: { message: `Created ${newEntry.amount}km entry for ${newEntry.name}` }
     };
+    context.done();
 };
 
 function isEntryValid(entry: Entry): boolean {

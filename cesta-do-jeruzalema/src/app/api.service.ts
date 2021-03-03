@@ -13,8 +13,8 @@ export class ApiService {
     constructor(private http: HttpClient) {
     }
 
-    getEntries(): Observable<{ text: string, entries: Entry[] }> {
-        return this.http.get(this.rootUrl + "/entries") as Observable<{ text: string, entries: Entry[] }>;
+    getEntries(): Observable<{ entries: Entry[] }> {
+        return this.http.get(this.rootUrl + "/entries") as Observable<{ entries: Entry[] }>;
     }
 
     addEntry(newEntry: CreateEntry): Observable<any> { // TODO remove any

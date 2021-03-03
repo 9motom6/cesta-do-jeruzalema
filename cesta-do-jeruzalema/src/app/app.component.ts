@@ -19,9 +19,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.appService.getEntries().pipe(takeUntil(this.destroy$)).subscribe((tasks: { text: string; entries: Entry[] }) => {
+        this.appService.getEntries().pipe(takeUntil(this.destroy$)).subscribe((tasks: { entries: Entry[] }) => {
             console.log(tasks);
-            this.tasks = tasks.text + JSON.stringify(tasks.entries);
+            this.tasks = JSON.stringify(tasks.entries);
         });
     }
 
