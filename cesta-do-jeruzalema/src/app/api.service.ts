@@ -17,7 +17,7 @@ export class ApiService {
         return this.http.get(this.rootUrl + "/entries") as Observable<{ entries: Entry[] }>;
     }
 
-    addEntry(newEntry: CreateEntry): Observable<any> { // TODO remove any
-        return this.http.post(this.rootUrl + "/entries/add", newEntry);
+    addEntry(newEntry: CreateEntry): Observable<{ message: string }> {
+        return this.http.post(this.rootUrl + "/entries/add", newEntry) as Observable<{ message: string }>;
     }
 }

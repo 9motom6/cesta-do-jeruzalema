@@ -7,7 +7,7 @@ import {CreateEntry, Entry} from "./models";
 @Component({
     selector: "app-root",
     templateUrl: "./app.component.html",
-    styleUrls: ["./app.component.less"]
+    styleUrls: [ "./app.component.less" ]
 })
 export class AppComponent implements OnInit, OnDestroy {
     title = "cesta-do-jeruzalema";
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
             name: "Horys",
             amount: 5,
         };
-        this.appService.addEntry(entry).pipe(takeUntil(this.destroy$)).subscribe((resp) => {
+        this.appService.addEntry(entry).pipe(takeUntil(this.destroy$)).subscribe((resp: { message: string }) => {
             console.log(resp);
         });
     }
