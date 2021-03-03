@@ -21,6 +21,7 @@
       "name": "entries",
       "databaseName": "database",
       "collectionName": "cesta-do-jeruzalema",
+      "sqlQuery": "SELECT c.id, c.name, c.amount, c._ts AS ts FROM c",
       "connectionStringSetting": "9motom6_DOCUMENTDB"
     }
   ],
