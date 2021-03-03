@@ -1,4 +1,26 @@
-Hello from Journey tracker
-tasks: {{tasks}}
+<app-layout>
+    <mat-sidenav-container fullscreen>
+        <mat-sidenav appResponsiveSidenav [permanentAt]="960" #sidenav role="navigation">
+            <app-entry-list [entries]="entries"></app-entry-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus suscipit leo a efficitur fringilla. Integer dapibus augue ante, sit amet pretium nibh finibus et. In vulputate, erat vitae porttitor mattis, massa nibh gravida dolor, quis pellentesque ligula tortor ut mi. Integer consequat magna vel risus ultrices, et gravida leo luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dapibus ligula commodo, varius mauris nec, rhoncus nibh. Etiam nisi justo, rutrum in elementum rutrum, vestibulum quis ipsum.
 
-<button mat-raised-button color="primary" (click)="addEntry()" >Add entry</button>
+                    Aliquam ac lobortis risus. Curabitur elit risus, tincidunt sit amet tincidunt laoreet, vulputate ut purus. Etiam quis rhoncus augue, a ultricies justo. Nam egestas aliquam blandit. Suspendisse placerat, nunc sit amet sollicitudin cursus, quam dui rutrum eros, ac varius tortor libero vitae nunc. Quisque at diam tempor, vestibulum ante ut, sodales leo. Mauris eget dictum ante. Etiam bibendum vehicula blandit. Duis mauris sapien, imperdiet sed turpis sit amet, tristique ultrices velit.
+
+                    Curabitur odio leo, vulputate vel nunc ac, dictum suscipit purus. Proin sem odio, viverra a diam in, aliquam iaculis nisl. Proin at volutpat velit. Donec aliquam massa in pellentesque dictum. Fusce tincidunt dignissim bibendum. Cras mollis felis libero, at rhoncus velit convallis sed. Integer ut dictum libero. Pellentesque pretium porttitor quam sit amet congue. Quisque placerat rhoncus elit ac viverra. Morbi at enim non massa placerat imperdiet. Etiam eu justo felis. Suspendisse non ipsum vel risus convallis congue in a elit. In vitae ornare est. Duis vel auctor ex.
+
+                    Mauris nec placerat elit, a vulputate nulla. In interdum, mauris vel vehicula rutrum, enim massa efficitur massa, sed efficitur elit mauris sed odio. Pellentesque quis sem eros. Proin vel magna elit. Nunc pellentesque sagittis quam eget finibus. Vestibulum sit amet orci mi. Nullam ac faucibus nulla. Phasellus id pretium nibh. Phasellus et ligula turpis. Quisque odio orci, gravida sodales nunc eu, tincidunt vulputate ex. Morbi erat augue, vulputate nec est vitae, elementum gravida est. Phasellus eu nulla ante.
+
+                    Cras vitae mauris aliquam, faucibus velit sit amet, pellentesque quam. Donec vitae lacus congue, facilisis nisi nec, euismod urna. In ante ante, luctus eu sagittis a, viverra a nisi. Curabitur congue blandit metus sed commodo. Donec non diam enim. Ut hendrerit lacus vitae nulla lacinia sodales. Fusce consequat semper nisi eget luctus. Mauris nec gravida felis. Cras nec mattis orci, at aliquam sapien. Curabitur in tristique dolor. Nulla tortor ligula, pellentesque vel sem in, tincidunt euismod purus. Vivamus posuere suscipit tellus, vel malesuada mi tincidunt sed. Phasellus non blandit mi, volutpat ultrices sem.</p>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</app-layout>
+
+<!--<app-header-bar></app-header-bar>-->
+<!--Hello from Journey tracker-->
+
+<!--<button mat-raised-button color="primary" (click)="addEntry()" >Add entry</button>-->
+
+<!--<app-entry-list [entries]="entries"></app-entry-list>-->

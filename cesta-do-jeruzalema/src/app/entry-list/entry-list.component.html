@@ -1,0 +1,9 @@
+<div class="container">
+    <cdk-virtual-scroll-viewport itemSize="{{entries.length}}" class="viewport">
+        <div *cdkVirtualFor="let entry of entries" class="entry">
+            {{entry.name}} {{entry.amount}} km<br>
+            {{entry.ts}}
+            <!--                {{entry || 'Loading...'}}-->
+        </div>
+    </cdk-virtual-scroll-viewport>
+</div>
