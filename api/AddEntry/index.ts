@@ -26,7 +26,7 @@ const httpTrigger: AzureFunction = async (context: Context, req: HttpRequest): P
 
 function isEntryValid(entry: Entry): boolean {
     return entry
-        && entry.name && entry.name.length >= 4 && entry.name.length <= 15
+        && entry.name && entry.name.length >= 3 && entry.name.length <= 15
         && entry.amount && entry.amount >= 0.1 && entry.amount <= 50;
 }
 

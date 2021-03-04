@@ -29,22 +29,16 @@ export class HeaderComponent implements OnInit {
     openDialog(): void {
         const dialogRef = this.dialog.open(AddEntryDialogComponent, {
             width: "250px",
-            data: {name: "name", animal: "animal"}
+            data: {name: "name", animal: "animal"} // TODO pass entries and hint existing users
         });
 
-        dialogRef.afterClosed().subscribe(result => {
-            console.log("The dialog was closed", result);
-            // this.animal = result;
-        });
-    }
-
-    addEntry(): void {
-        const entry: CreateEntry = {
-            name: "Horys",
-            amount: 5,
-        };
-        this.apiService.addEntry(entry).pipe(take(1)).subscribe((resp: { message: string }) => {
-            console.log(resp);
+        dialogRef.afterClosed().subscribe((newEntry: CreateEntry) => {
+            console.log("The dialog was closed", newEntry);
+            if (newEntry) {
+                this.apiService.addEntry(newEntry).pipe(take(1)).subscribe((resp: { message: string }) => {
+                    console.log(resp);
+                });
+            }
         });
     }
 }

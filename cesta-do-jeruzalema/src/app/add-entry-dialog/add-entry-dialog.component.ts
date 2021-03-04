@@ -17,7 +17,7 @@ export class AddEntryDialogComponent implements OnInit {
         amount: 0,
         name: ""
     };
-    nameControl: FormControl = new FormControl("", [Validators.required, Validators.minLength(4), Validators.maxLength(15)]);
+    nameControl: FormControl = new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(15)]);
     amountControl: FormControl = new FormControl(0, [  Validators.min(0.1), Validators.max(50)]);
     constructor( public dialogRef: MatDialogRef<DialogOverviewExampleDialog>) {
     }
@@ -45,7 +45,7 @@ export class AddEntryDialogComponent implements OnInit {
         }
 
         if (this.nameControl.hasError("minlength")) {
-            return "Jméno musí mít aspoň 4 znaky";
+            return "Jméno musí mít aspoň 3 znaky";
         }
 
         if (this.nameControl.hasError("maxlength")) {
