@@ -18,13 +18,23 @@ import {LayoutComponent} from "./layout/layout.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ResponsiveSidenavDirective } from "./directives/responsive-sidenav.directive";
 import {LayoutModule} from "@angular/cdk/layout";
+import { AddEntryDialogComponent } from "./add-entry-dialog/add-entry-dialog.component";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatInputModule} from "@angular/material/input";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {OverlayModule} from "@angular/cdk/overlay";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {FormsModule} from "@angular/forms";
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
         EntryListComponent,
         LayoutComponent,
-        ResponsiveSidenavDirective
+        ResponsiveSidenavDirective,
+        AddEntryDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -36,9 +46,17 @@ import {LayoutModule} from "@angular/cdk/layout";
         MatTabsModule,
         MatToolbarModule,
         MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule,
+        MatTooltipModule,
+        OverlayModule,
+        MatDialogModule,
         ScrollingModule,
         FlexLayoutModule,
-        LayoutModule
+        LayoutModule,
+        FormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

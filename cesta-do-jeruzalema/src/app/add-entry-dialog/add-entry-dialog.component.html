@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Přidat záznam</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Jméno</mat-label>
+        <input matInput [(ngModel)]="entry.name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Počet kilometrů</mat-label>
+        <input matInput [(ngModel)]="entry.amount">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Zrušit</button>
+    <button mat-button [mat-dialog-close]="entry" cdkFocusInitial>Uložit</button>
+</div>

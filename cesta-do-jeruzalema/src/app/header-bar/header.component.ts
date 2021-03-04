@@ -2,6 +2,8 @@ import {Component, EventEmitter, OnInit, Output} from "@angular/core";
 import {CreateEntry} from "../models";
 import {take} from "rxjs/operators";
 import {ApiService} from "../api.service";
+import {MatDialog} from "@angular/material/dialog";
+import {AddEntryDialogComponent} from "../add-entry-dialog/add-entry-dialog.component";
 
 @Component({
     selector: "app-header",
@@ -13,7 +15,8 @@ export class HeaderComponent implements OnInit {
     @Output()
     public sidenavToggle = new EventEmitter();
 
-    constructor(private apiService: ApiService) {
+    constructor(public dialog: MatDialog,
+                private apiService: ApiService) {
     }
 
     ngOnInit(): void {
@@ -23,6 +26,17 @@ export class HeaderComponent implements OnInit {
         this.sidenavToggle.emit();
     }
 
+    openDialog(): void {
+        const dialogRef = this.dialog.open(AddEntryDialogComponent, {
+            width: "250px",
+            data: {name: "name", animal: "animal"}
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log("The dialog was closed", result);
+            // this.animal = result;
+        });
+    }
 
     addEntry(): void {
         const entry: CreateEntry = {
