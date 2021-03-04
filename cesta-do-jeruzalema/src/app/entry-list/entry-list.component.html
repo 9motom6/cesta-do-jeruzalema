@@ -1,12 +1,14 @@
 <div class="container">
     <h2 class="mat-title title">Všechny záznamy</h2>
+    <div class="container--spinner" *ngIf="isLoading">
+        <mat-spinner ></mat-spinner>
+    </div>
     <cdk-virtual-scroll-viewport itemSize="{{entries.length}}" class="viewport">
         <div *cdkVirtualFor="let entry of entries" class="entry">
             <div class="entry--name mat-body-1">{{entry.name}}</div>
             <div class="entry--amount mat-body-2">{{entry.amount}} km</div>
 
             <span class="mat-caption entry--date">{{entry.date.toLocaleString()}}</span>
-            <!--                {{entry || 'Loading...'}}-->
         </div>
     </cdk-virtual-scroll-viewport>
 </div>
