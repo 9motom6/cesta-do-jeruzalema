@@ -27,11 +27,11 @@ export class AppComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.apiService.getEntries().pipe(takeUntil(this.destroy$)).subscribe((entries: Entry[]) => {
             this.entries = entries;
-            this.achievedDistance = entries
+            this.achievedDistance = Math.round(entries
                 .map((entry) => entry.amount)
                 .reduce((acc: number, current: number) => {
                     return acc + current;
-                }, 0);
+                }, 0));
             this.achievedPercent = this.achievedDistance / (this.totalDistance / 100);
             this.walkers = this.getWalkersFromEntries(entries);
             this.isLoading = false;

@@ -37,6 +37,7 @@ export class HeaderComponent implements OnInit {
         dialogRef.afterClosed().subscribe((newEntry: CreateEntry) => {
             console.log("The dialog was closed", newEntry);
             if (newEntry) {
+                newEntry.amount = Math.round((newEntry.amount + Number.EPSILON) * 100) / 100;
                 this.apiService.addEntry(newEntry).pipe(take(1)).subscribe((resp: { message: string }) => {
                     console.log(resp);
                     this.snackBar.open(`Přidáno ${newEntry.amount} km pro ${newEntry.name}`, "Ok");
