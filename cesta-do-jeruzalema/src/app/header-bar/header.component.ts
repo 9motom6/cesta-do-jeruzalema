@@ -4,6 +4,7 @@ import {take} from "rxjs/operators";
 import {ApiService} from "../api.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddEntryDialogComponent} from "../add-entry-dialog/add-entry-dialog.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
     selector: "app-header",
@@ -16,7 +17,8 @@ export class HeaderComponent implements OnInit {
     public sidenavToggle = new EventEmitter();
 
     constructor(public dialog: MatDialog,
-                private apiService: ApiService) {
+                private apiService: ApiService,
+                private snackBar: MatSnackBar) {
     }
 
     ngOnInit(): void {
@@ -37,6 +39,12 @@ export class HeaderComponent implements OnInit {
             if (newEntry) {
                 this.apiService.addEntry(newEntry).pipe(take(1)).subscribe((resp: { message: string }) => {
                     console.log(resp);
+                    this.snackBar.open(`Přidáno ${newEntry.amount} km pro ${newEntry.name}`, "Ok");
+                }, error => {
+                    this.snackBar.open(`Nepodařilo se uložit záznam`, "Ok", {
+                        duration: 10000,
+                        panelClass: ["error"]
+                    });
                 });
             }
         });
