@@ -28,9 +28,13 @@ export class ApiService {
     getEntries(): Observable<Entry[]> {
         return this.http.get(this.rootUrl + "/entries").pipe(map((entries: EntriesDto) => {
 
-            return entries.entries.map(((entry: EntryDto) => {
+            const mappedEntries: Entry[] = entries.entries.map(((entry: EntryDto) => {
                 return { ...entry, date: new Date(entry.ts * 1000) };
             }));
+
+            mappedEntries.push(...mappedEntries);
+
+            return mappedEntries;
         })) as Observable<Entry[]>;
     }
 

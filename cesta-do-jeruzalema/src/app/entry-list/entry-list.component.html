@@ -1,9 +1,11 @@
 <div class="container">
-    <h2>Všechny záznamy</h2>
+    <h2 class="mat-title title">Všechny záznamy</h2>
     <cdk-virtual-scroll-viewport itemSize="{{entries.length}}" class="viewport">
         <div *cdkVirtualFor="let entry of entries" class="entry">
-            {{entry.name}} {{entry.amount}} km<br>
-            {{entry.date.toLocaleString()}}
+            <div class="entry--name mat-body-1">{{entry.name}}</div>
+            <div class="entry--amount mat-body-2">{{entry.amount}} km</div>
+
+            <span class="mat-caption entry--date">{{entry.date.toLocaleString()}}</span>
             <!--                {{entry || 'Loading...'}}-->
         </div>
     </cdk-virtual-scroll-viewport>
