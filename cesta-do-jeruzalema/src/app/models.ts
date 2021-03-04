@@ -9,3 +9,9 @@ export interface CreateEntry {
     name: string;
     amount: number;
 }
+
+export interface Walker {
+    name: string;
+    amount: number;
+    longest: number;
+}

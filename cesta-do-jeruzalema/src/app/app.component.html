@@ -11,6 +11,7 @@
                 <div class="progress--km-count mat-headline">{{achievedDistance}}/{{totalDistance}} km</div>
             </div>
 
+            <app-table-of-walkers [walkers]="walkers"></app-table-of-walkers>
             <div class="google-map">
                 <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m24!1m8!1m3!1d4527559.829519865!2d28.490148459519332!3d40.421468389320125!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x4712941dc6ca2387%3A0xdb3a17546e5b93ba!2zS3LDoWxvdm9wb2xza8OhIDc0LCA2MTYgMDAgQnJuby3FvWFib3bFmWVza3k!3m2!1d49.2180173!2d16.5733092!4m5!1s0x1502d7d634c1fc4b%3A0xd96f623e456ee1cb!2sJerusalem%2C%20Israel!3m2!1d31.768318999999998!2d35.21371!5e0!3m2!1sen!2scz!4v1614883612860!5m2!1sen!2scz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>

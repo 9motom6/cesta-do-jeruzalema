@@ -15,10 +15,10 @@ import {EntryListComponent} from "./entry-list/entry-list.component";
 import {ScrollingModule} from "@angular/cdk/scrolling";
 import {LayoutComponent} from "./layout/layout.component";
 
-import { FlexLayoutModule } from "@angular/flex-layout";
-import { ResponsiveSidenavDirective } from "./directives/responsive-sidenav.directive";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {ResponsiveSidenavDirective} from "./directives/responsive-sidenav.directive";
 import {LayoutModule} from "@angular/cdk/layout";
-import { AddEntryDialogComponent } from "./add-entry-dialog/add-entry-dialog.component";
+import {AddEntryDialogComponent} from "./add-entry-dialog/add-entry-dialog.component";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
@@ -28,6 +28,10 @@ import {OverlayModule} from "@angular/cdk/overlay";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {TableOfWalkersComponent} from "./table-of-walkers/table-of-walkers.component";
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -35,7 +39,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
         EntryListComponent,
         LayoutComponent,
         ResponsiveSidenavDirective,
-        AddEntryDialogComponent
+        AddEntryDialogComponent,
+        TableOfWalkersComponent
     ],
     imports: [
         BrowserModule,
@@ -59,10 +64,12 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
         LayoutModule,
         FormsModule,
         ReactiveFormsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatTableModule,
+        MatSortModule
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [ AppComponent ]
 })
 export class AppModule {
 }
