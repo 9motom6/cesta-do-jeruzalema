@@ -2,14 +2,17 @@
 <div mat-dialog-content>
     <mat-form-field>
         <mat-label>Jméno</mat-label>
-        <input matInput [(ngModel)]="entry.name">
+        <input matInput [(ngModel)]="entry.name" [formControl]="nameControl">
+        <mat-error *ngIf="nameControl.invalid">{{getNameErrorMessage()}}</mat-error>
     </mat-form-field>
     <mat-form-field>
         <mat-label>Počet kilometrů</mat-label>
-        <input matInput [(ngModel)]="entry.amount">
+        <input matInput type="number" [(ngModel)]="entry.amount" [formControl]="amountControl">
+        <span matSuffix>km</span>
+        <mat-error *ngIf="nameControl.invalid">{{getAmountErrorMessage()}}</mat-error>
     </mat-form-field>
 </div>
 <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Zrušit</button>
-    <button mat-button [mat-dialog-close]="entry" cdkFocusInitial>Uložit</button>
+    <button mat-button (click)="onSaveClick()" cdkFocusInitial type="submit">Uložit</button>
 </div>

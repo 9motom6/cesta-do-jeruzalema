@@ -26,7 +26,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {OverlayModule} from "@angular/cdk/overlay";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 @NgModule({
     declarations: [
         AppComponent,
@@ -56,7 +56,8 @@ import {FormsModule} from "@angular/forms";
         ScrollingModule,
         FlexLayoutModule,
         LayoutModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
