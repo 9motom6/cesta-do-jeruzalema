@@ -31,6 +31,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {TableOfWalkersComponent} from "./table-of-walkers/table-of-walkers.component";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
     declarations: [
@@ -66,7 +67,8 @@ import {MatSortModule} from "@angular/material/sort";
         ReactiveFormsModule,
         MatSnackBarModule,
         MatTableModule,
-        MatSortModule
+        MatSortModule,
+        MatCardModule
     ],
     providers: [],
     bootstrap: [ AppComponent ]
