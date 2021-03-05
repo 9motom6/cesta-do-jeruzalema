@@ -32,7 +32,8 @@ import {TableOfWalkersComponent} from "./table-of-walkers/table-of-walkers.compo
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatCardModule} from "@angular/material/card";
-import {MatRippleModule} from "@angular/material/core";
+import {MatOptionModule, MatRippleModule} from "@angular/material/core";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
     declarations: [
@@ -70,7 +71,9 @@ import {MatRippleModule} from "@angular/material/core";
         MatTableModule,
         MatSortModule,
         MatCardModule,
-        MatRippleModule
+        MatRippleModule,
+        MatOptionModule,
+        MatAutocompleteModule
     ],
     providers: [],
     bootstrap: [ AppComponent ]

@@ -1,6 +1,6 @@
 <app-layout>
     <div class="header">
-        <app-header (sidenavToggle)="sidenav.toggle()" (refreshEmitter)="refresh()"></app-header>
+        <app-header (sidenavToggle)="sidenav.toggle()" (refreshEmitter)="refresh()" [walkers]="walkers"></app-header>
         <mat-progress-bar *ngIf="isLoading" mode="query"></mat-progress-bar>
     </div>
     <div class="main-content-wrapper">

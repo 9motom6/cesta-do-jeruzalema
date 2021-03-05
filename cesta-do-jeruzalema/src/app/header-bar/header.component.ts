@@ -1,5 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from "@angular/core";
-import {CreateEntry} from "../models";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {CreateEntry, Walker} from "../models";
 import {take} from "rxjs/operators";
 import {ApiService} from "../api.service";
 import {MatDialog} from "@angular/material/dialog";
@@ -13,6 +13,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class HeaderComponent implements OnInit {
     public refreshDisabled = false;
+
+    @Input()
+    private walkers: Walker[] = [];
 
     @Output()
     public sidenavToggle = new EventEmitter();
@@ -45,7 +48,7 @@ export class HeaderComponent implements OnInit {
     openDialog(): void {
         const dialogRef = this.dialog.open(AddEntryDialogComponent, {
             width: "250px",
-            data: { name: "name", animal: "animal" } // TODO pass entries and hint existing users
+            data: this.walkers
         });
 
         dialogRef.afterClosed().subscribe((newEntry: CreateEntry) => {

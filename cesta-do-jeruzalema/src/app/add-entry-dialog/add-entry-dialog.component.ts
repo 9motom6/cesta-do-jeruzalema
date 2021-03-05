@@ -1,10 +1,9 @@
-import {Component, OnInit} from "@angular/core";
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {CreateEntry} from "../models";
+import {Component, Inject, OnInit} from "@angular/core";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {CreateEntry, Walker} from "../models";
 import {FormControl, Validators} from "@angular/forms";
-
-class DialogOverviewExampleDialog {
-}
+import {Observable} from "rxjs";
+import {map, startWith} from "rxjs/operators";
 
 @Component({
     selector: "app-add-entry-dialog",
@@ -12,24 +11,34 @@ class DialogOverviewExampleDialog {
     styleUrls: [ "./add-entry-dialog.component.less" ]
 })
 export class AddEntryDialogComponent implements OnInit {
-
     entry: CreateEntry = {
         amount: 0,
         name: ""
     };
-    nameControl: FormControl = new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(15)]);
-    amountControl: FormControl = new FormControl(0, [  Validators.min(0.1), Validators.max(50)]);
-    constructor( public dialogRef: MatDialogRef<DialogOverviewExampleDialog>) {
+    nameControl: FormControl = new FormControl("", [ Validators.required, Validators.minLength(3), Validators.maxLength(15) ]);
+    amountControl: FormControl = new FormControl(0, [ Validators.min(0.1), Validators.max(50) ]);
+
+    filteredOptions: Observable<Walker[]>;
+
+    constructor(public dialogRef: MatDialogRef<AddEntryDialogComponent>,
+                @Inject(MAT_DIALOG_DATA) public data: Walker[]) {
     }
 
     ngOnInit(): void {
+        this.filteredOptions = this.nameControl.valueChanges
+            .pipe(
+                startWith(""),
+                map(value => typeof value === "string" ? value : value.name),
+                map(name => name ? this._filter(name) : this.data.slice())
+            );
     }
 
     onNoClick(): void {
         this.dialogRef.close();
     }
+
     onSaveClick(): void {
-        if (this.nameControl.valid && this.amountControl.valid){
+        if (this.nameControl.valid && this.amountControl.valid) {
             this.dialogRef.close(this.entry);
             return;
         }
@@ -55,6 +64,11 @@ export class AddEntryDialogComponent implements OnInit {
         return "";
     }
 
+
+    displayFn(walker: Walker): string {
+        return walker && walker.name ? walker.name : "";
+    }
+
     getAmountErrorMessage(): string {
         if (this.amountControl.hasError("required")) {
             return "Musíš zadat délku cesty";
@@ -69,5 +83,11 @@ export class AddEntryDialogComponent implements OnInit {
         }
 
         return "";
+    }
+
+    private _filter(name: string): Walker[] {
+        const filterValue = name.toLowerCase();
+
+        return this.data.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
     }
 }
