@@ -3,6 +3,9 @@
         <button mat-icon-button (click)="onToggleSidenav()">
             <mat-icon>menu</mat-icon>
         </button>
+        <button mat-icon-button (click)="onRefreshClick()" [disabled]="refreshDisabled">
+            <mat-icon>refresh</mat-icon>
+        </button>
     </div>
     <div fxFlex fxLayout fxLayoutAlign="end">
         <button mat-raised-button color="accent" (click)="openDialog()">Přidat záznam</button>

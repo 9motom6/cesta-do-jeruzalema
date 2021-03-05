@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ApiService} from "./api.service";
-import {takeUntil} from "rxjs/operators";
+import {debounceTime, filter, takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {CreateEntry, Entry, Walker} from "./models";
 import {TOTAL_DISTANCE} from "./constants";
@@ -25,22 +25,17 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.apiService.getEntries().pipe(takeUntil(this.destroy$)).subscribe((entries: Entry[]) => {
-            this.entries = entries;
-            this.achievedDistance = Math.round(entries
-                .map((entry) => entry.amount)
-                .reduce((acc: number, current: number) => {
-                    return acc + current;
-                }, 0));
-            this.achievedPercent = this.achievedDistance / (this.totalDistance / 100);
-            this.walkers = this.getWalkersFromEntries(entries);
-            this.isLoading = false;
-        });
+        this.getEntriesFromApi();
     }
 
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.unsubscribe();
+    }
+
+    refresh(): void {
+        this.isLoading = true;
+        this.getEntriesFromApi();
     }
 
     private getWalkersFromEntries(entries: Entry[]): Walker[] {
@@ -53,9 +48,23 @@ export class AppComponent implements OnInit, OnDestroy {
                     foundWalker.longest = entry.amount;
                 }
             } else {
-                walkers.push({name: entry.name, amount: entry.amount, longest: entry.amount});
+                walkers.push({ name: entry.name, amount: entry.amount, longest: entry.amount });
             }
         }
         return walkers;
+    }
+
+    private getEntriesFromApi(): void {
+        this.apiService.getEntries().pipe(takeUntil(this.destroy$)).subscribe((entries: Entry[]) => {
+            this.entries = entries;
+            this.achievedDistance = Math.round(entries
+                .map((entry) => entry.amount)
+                .reduce((acc: number, current: number) => {
+                    return acc + current;
+                }, 0));
+            this.achievedPercent = this.achievedDistance / (this.totalDistance / 100);
+            this.walkers = this.getWalkersFromEntries(entries);
+            this.isLoading = false;
+        });
     }
 }

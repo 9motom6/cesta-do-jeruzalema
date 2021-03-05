@@ -1,6 +1,6 @@
 <app-layout>
     <div class="header">
-        <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+        <app-header (sidenavToggle)="sidenav.toggle()" (refreshEmitter)="refresh()"></app-header>
         <mat-progress-bar *ngIf="isLoading" mode="query"></mat-progress-bar>
     </div>
     <div class="main-content-wrapper">
@@ -20,7 +20,7 @@
                 </mat-card>
 
                 <div class="footer">
-                    <p>Vyvořil Horys. Pokud něco nefunguje nebo máš nápad na zlepšení, napiš na <a href="mailto:9motom6%40gmail.com" class="footer--link">email</a>.
+                    <p class="footer--text">Vyvořil Horys. Pokud něco nefunguje nebo máš nápad na zlepšení, napiš na <a href="mailto:9motom6%40gmail.com" class="footer--link">email</a>.
                         <a href="https://github.com/9motom6/cesta-do-jeruzalema"  class="footer--link">Zdrojový kód</a></p>
                 </div>
 

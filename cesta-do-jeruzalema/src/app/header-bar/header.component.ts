@@ -12,9 +12,14 @@ import {MatSnackBar} from "@angular/material/snack-bar";
     styleUrls: [ "./header.component.less" ]
 })
 export class HeaderComponent implements OnInit {
+    public refreshDisabled = false;
 
     @Output()
     public sidenavToggle = new EventEmitter();
+
+    @Output()
+    public refreshEmitter = new EventEmitter();
+
 
     constructor(public dialog: MatDialog,
                 private apiService: ApiService,
@@ -24,14 +29,23 @@ export class HeaderComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    public onToggleSidenav = () => {
+    onToggleSidenav(): void {
         this.sidenavToggle.emit();
+    }
+
+
+    onRefreshClick(): void {
+        this.refreshEmitter.emit();
+        this.refreshDisabled = true;
+        setTimeout(() => {
+            this.refreshDisabled = false;
+        }, 5000);
     }
 
     openDialog(): void {
         const dialogRef = this.dialog.open(AddEntryDialogComponent, {
             width: "250px",
-            data: {name: "name", animal: "animal"} // TODO pass entries and hint existing users
+            data: { name: "name", animal: "animal" } // TODO pass entries and hint existing users
         });
 
         dialogRef.afterClosed().subscribe((newEntry: CreateEntry) => {
@@ -44,7 +58,7 @@ export class HeaderComponent implements OnInit {
                 }, (error: any) => {
                     this.snackBar.open(`Nepodařilo se uložit záznam`, "Ok", {
                         duration: 10000,
-                        panelClass: ["error"]
+                        panelClass: [ "error" ]
                     });
                 });
             }
