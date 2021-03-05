@@ -15,7 +15,8 @@ export class AddEntryDialogComponent implements OnInit {
         amount: 0,
         name: ""
     };
-    nameControl: FormControl = new FormControl("", [ Validators.required, Validators.minLength(3), Validators.maxLength(15) ]);
+    nameControl: FormControl = new FormControl("",
+        [ Validators.required, Validators.minLength(3), Validators.maxLength(15), this.noWhitespaceValidator]);
     amountControl: FormControl = new FormControl(0, [ Validators.min(0.1), Validators.max(50) ]);
 
     filteredOptions: Observable<string[]>;
@@ -52,6 +53,9 @@ export class AddEntryDialogComponent implements OnInit {
         if (this.nameControl.hasError("required")) {
             return "Musíš zadat jméno";
         }
+        if (this.nameControl.hasError("whitespace")) {
+            return "Jméno nemůže být jenom bílé znaky";
+        }
 
         if (this.nameControl.hasError("minlength")) {
             return "Jméno musí mít aspoň 3 znaky";
@@ -83,6 +87,12 @@ export class AddEntryDialogComponent implements OnInit {
         }
 
         return "";
+    }
+
+    public noWhitespaceValidator(control: FormControl): { whitespace: true } | null{
+        const isWhitespace = (control.value || "").trim().length === 0;
+        const isValid = !isWhitespace;
+        return isValid ? null : { whitespace: true };
     }
 
     private _filter(name: string): string[] {

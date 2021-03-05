@@ -1,3 +1,12 @@
-# Vanilla JavaScript App
+# Cesta do Jeruzaléma
 
-This repo is used as a starter for a _very basic_ HTML web application using no front-end frameworks.
+App for tracking path from Brno to Jerusalem
+
+http://bit.ly/cesta-do-jeruzalema
+
+
+
+###### Technologie 
+BE: Azure Static web apps, Functions, CosmosDB
+ 
+FE: Angular, Angular Material
