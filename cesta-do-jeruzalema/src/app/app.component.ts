@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ApiService} from "./api.service";
-import {debounceTime, filter, takeUntil} from "rxjs/operators";
+import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs";
-import {CreateEntry, Entry, Walker} from "./models";
+import {Entry, Walker} from "./models";
 import {TOTAL_DISTANCE} from "./constants";
 
 @Component({
