@@ -18,10 +18,10 @@ export class AddEntryDialogComponent implements OnInit {
     nameControl: FormControl = new FormControl("", [ Validators.required, Validators.minLength(3), Validators.maxLength(15) ]);
     amountControl: FormControl = new FormControl(0, [ Validators.min(0.1), Validators.max(50) ]);
 
-    filteredOptions: Observable<Walker[]>;
+    filteredOptions: Observable<string[]>;
 
     constructor(public dialogRef: MatDialogRef<AddEntryDialogComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: Walker[]) {
+                @Inject(MAT_DIALOG_DATA) public data: string[]) {
     }
 
     ngOnInit(): void {
@@ -65,8 +65,8 @@ export class AddEntryDialogComponent implements OnInit {
     }
 
 
-    displayFn(walker: Walker): string {
-        return walker && walker.name ? walker.name : "";
+    displayFn(walker: string): string {
+        return walker || "";
     }
 
     getAmountErrorMessage(): string {
@@ -85,9 +85,9 @@ export class AddEntryDialogComponent implements OnInit {
         return "";
     }
 
-    private _filter(name: string): Walker[] {
+    private _filter(name: string): string[] {
         const filterValue = name.toLowerCase();
 
-        return this.data.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+        return this.data.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
     }
 }

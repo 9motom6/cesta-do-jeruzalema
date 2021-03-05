@@ -47,8 +47,8 @@ export class HeaderComponent implements OnInit {
 
     openDialog(): void {
         const dialogRef = this.dialog.open(AddEntryDialogComponent, {
-            width: "250px",
-            data: this.walkers
+            width: "300px",
+            data: this.walkers.map((walker) => walker.name)
         });
 
         dialogRef.afterClosed().subscribe((newEntry: CreateEntry) => {
