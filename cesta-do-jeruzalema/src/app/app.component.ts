@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.getEntriesFromApi();
+        this.getEntriesFromApi(false);
     }
 
     ngOnDestroy(): void {
@@ -35,7 +35,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
     refresh(): void {
         this.isLoading = true;
-        this.getEntriesFromApi();
+        this.getEntriesFromApi(true);
+
     }
 
     private getWalkersFromEntries(entries: Entry[]): Walker[] {
@@ -54,8 +55,12 @@ export class AppComponent implements OnInit, OnDestroy {
         return walkers;
     }
 
-    private getEntriesFromApi(): void {
+    private getEntriesFromApi(isRefresh: boolean): void {
         this.apiService.getEntries().pipe(takeUntil(this.destroy$)).subscribe((entries: Entry[]) => {
+            if (isRefresh) {
+                entries.forEach((newEntry: Entry) => newEntry.isNew =
+                    !this.entries.find((oldEntry: Entry) => oldEntry.id === newEntry.id));
+            }
             this.entries = entries;
             this.achievedDistance = Math.round(entries
                 .map((entry) => entry.amount)

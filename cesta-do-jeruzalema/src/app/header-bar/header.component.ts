@@ -55,7 +55,9 @@ export class HeaderComponent implements OnInit {
                 this.apiService.addEntry(newEntry).pipe(take(1)).subscribe((resp: { message: string }) => {
                     console.log(resp);
                     this.snackBar.open(`Přidáno ${newEntry.amount} km pro ${newEntry.name}`, "Ok");
+                    this.refreshEmitter.emit();
                 }, (error: any) => {
+                    console.error(error);
                     this.snackBar.open(`Nepodařilo se uložit záznam`, "Ok", {
                         duration: 10000,
                         panelClass: [ "error" ]

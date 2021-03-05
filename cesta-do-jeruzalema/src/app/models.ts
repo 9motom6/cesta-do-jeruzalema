@@ -3,6 +3,7 @@ export interface Entry {
     amount: number;
     id: string;
     date: Date;
+    isNew?: boolean;
 }
 
 export interface CreateEntry {
