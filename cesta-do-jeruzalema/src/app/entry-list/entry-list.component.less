@@ -20,23 +20,24 @@
 
 .entry {
     height: 45px;
-    padding: 4px 10px;
-    border-bottom: 1px solid rgba(0,0,0,.12);
+    padding: 5px 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 0.8fr 1.2fr;
     gap: 0 0;
     grid-template-areas:
-    "name amount"
-    "date date";
+        "name amount"
+        "date date";
 
     &--date {
         grid-area: date;
-        color: 1;
+        color: rgba(0,0,0,.54);
     }
 
     &--name {
         grid-area: name;
+        white-space: nowrap;
     }
 
     &--amount {
