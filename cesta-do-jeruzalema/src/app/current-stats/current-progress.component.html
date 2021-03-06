@@ -1,0 +1,31 @@
+<div class="progress">
+    <div class="progress--toggle-group">
+        <mat-button-toggle-group
+            name="fontStyle"
+            aria-label="Font Style"
+            (change)="selectedChanged($event)"
+            [vertical]="innerWidth >= 600"
+            [value]="currentSelectedOption">
+            <mat-button-toggle [value]="progressOptions.Sum">Celkem</mat-button-toggle>
+            <mat-button-toggle [value]="progressOptions.Percent">%</mat-button-toggle>
+            <mat-button-toggle [value]="progressOptions.Missing">Zbývá</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <div class="progress--count mat-headline">
+        <ng-container [ngSwitch]="currentSelectedOption">
+            <ng-container *ngSwitchCase="progressOptions.Sum">
+                Ušli&nbsp;jsme <br *ngIf="innerWidth >= 600">
+                {{achievedDistance  | number:'1.0-0'}}&nbsp;z&nbsp;{{totalDistance}}&nbsp;km
+            </ng-container>
+            <ng-container *ngSwitchCase="progressOptions.Percent">
+                Ušli&nbsp;jsme <br *ngIf="innerWidth >= 600">
+                {{achievedPercent | number:'1.0-2'}}&nbsp;% cesty
+            </ng-container>
+            <ng-container *ngSwitchCase="progressOptions.Missing">
+                Zbývá ujít <br *ngIf="innerWidth >= 600">
+                {{totalDistance - achievedDistance}} km
+            </ng-container>
+        </ng-container>
+    </div>
+</div>

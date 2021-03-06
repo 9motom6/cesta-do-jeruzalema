@@ -1,20 +1,9 @@
 
 @header-height: 64px;
 
-.progress {
-    height: 130px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &--km-count {
-        text-align: center;
-        font-size: 50px;
-    }
-}
-
 .card {
     margin: 15px;
+    min-width: 200px;
 }
 
 .w-100 {
@@ -29,19 +18,15 @@
 
 .main-content-wrapper {
     margin-top: @header-height;
-    @media only screen and (max-width: 600px) {
-
+    @media only screen and (max-width: 599px) {
         margin-top: 56px;
-
     }
 }
 
 .content {
     height: calc(100vh - @header-height);
-    @media only screen and (max-width: 600px) {
-
+    @media only screen and (max-width: 599px) {
         height: calc(100vh - 56px) ;
-
     }
 }
 

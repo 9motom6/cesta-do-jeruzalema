@@ -34,6 +34,8 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatCardModule} from "@angular/material/card";
 import {MatOptionModule, MatRippleModule} from "@angular/material/core";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { CurrentProgressComponent } from './current-stats/current-progress.component';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
     declarations: [
@@ -43,7 +45,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
         LayoutComponent,
         ResponsiveSidenavDirective,
         AddEntryDialogComponent,
-        TableOfWalkersComponent
+        TableOfWalkersComponent,
+        CurrentProgressComponent
     ],
     imports: [
         BrowserModule,
@@ -73,7 +76,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
         MatCardModule,
         MatRippleModule,
         MatOptionModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatButtonToggleModule
     ],
     providers: [],
     bootstrap: [ AppComponent ]

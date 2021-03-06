@@ -1,0 +1,42 @@
+
+.progress {
+    height: 150px;
+    display: flex;
+
+    @media only screen and (max-width: 599px) {
+        flex-direction: column;
+        height: 110px;
+    }
+
+    &--toggle-group {
+        align-self: start;
+        position: absolute;
+
+        @media only screen and (max-width: 599px) {
+            position: relative;
+            justify-self: center;
+            width: 100%;
+        }
+    }
+
+    &--count {
+        text-align: center;
+        font-size: 42px;
+        margin-top: 10px;
+        justify-self: center;
+        align-self: center;
+        width: 100%;
+        line-height: 1.1;
+        @media only screen and (max-width: 599px) {
+            margin-top: 15px;
+            font-size: 35px;
+        }
+        @media only screen and (max-width: 480px) {
+            margin-top: 10px;
+            font-size: 25px;
+        }
+    }
+}
+
+
+
