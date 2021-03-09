@@ -14,6 +14,9 @@
                     <app-current-progress [achievedDistance]="achievedDistance"
                                           [achievedPercent]="achievedPercent"></app-current-progress>
                 </mat-card>
+                <mat-card class="card  mat-elevation-z7">
+                    <app-countdown [finishEstimate]="finishEstimate" [averageDailyDistance]="averageDailyDistance" [achievedDistance]="achievedDistance"></app-countdown>
+                </mat-card>
 
                 <app-table-of-walkers [walkers]="walkers"></app-table-of-walkers>
                 <mat-card class="card  mat-elevation-z7">

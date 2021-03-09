@@ -3,7 +3,9 @@ import {ApiService} from "./api.service";
 import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {Entry, Walker} from "./models";
-import {TOTAL_DISTANCE} from "./constants";
+import {START_DATE, TOTAL_DISTANCE} from "./constants";
+import * as moment from "moment";
+import {Moment} from "moment";
 
 @Component({
     selector: "app-root",
@@ -20,6 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
     achievedPercent = 0;
 
     isLoading = true;
+    finishEstimate: Moment;
+    averageDailyDistance: number;
 
     constructor(private apiService: ApiService) {
     }
@@ -68,8 +72,15 @@ export class AppComponent implements OnInit, OnDestroy {
                     return acc + current;
                 }, 0));
             this.achievedPercent = this.achievedDistance / (this.totalDistance / 100);
+            this.finishEstimate = this.getFinishEstimate(this.achievedDistance);
+
             this.walkers = this.getWalkersFromEntries(entries);
             this.isLoading = false;
         });
+    }
+
+    private getFinishEstimate(achievedDistance: number): Moment {
+        this.averageDailyDistance = achievedDistance / moment().diff(moment(START_DATE), "days") + 1;
+        return moment().add(TOTAL_DISTANCE / this.averageDailyDistance, "days");
     }
 }

@@ -11,13 +11,13 @@
         <!-- Weight Column -->
         <ng-container matColumnDef="amount">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Celkem km</th>
-            <td mat-cell *matCellDef="let element"> {{element.amount}} km </td>
+            <td mat-cell *matCellDef="let element"> {{element.amount | number : '1.0-2'}} km </td>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="longest">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Nejdelší cesta</th>
-            <td mat-cell *matCellDef="let element"> {{element.longest}} km </td>
+            <td mat-cell *matCellDef="let element"> {{element.longest | number : '1.0-2'}} km </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -25,3 +25,4 @@
     </table>
 
 </div>
+

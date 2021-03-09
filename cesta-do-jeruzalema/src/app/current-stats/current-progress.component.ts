@@ -2,7 +2,6 @@ import {Component, HostListener, Input, OnInit} from "@angular/core";
 import {TOTAL_DISTANCE} from "../constants";
 import {MatButtonToggleChange} from "@angular/material/button-toggle";
 
-
 enum ProgressOptions {
     Sum = "sum",
     Percent = "percent",
@@ -25,7 +24,8 @@ export class CurrentProgressComponent implements OnInit {
     achievedPercent = 0;
 
     currentSelectedOption: ProgressOptions = ProgressOptions.Sum;
-    innerWidth: any;
+    innerWidth: number;
+
     constructor() {
     }
 

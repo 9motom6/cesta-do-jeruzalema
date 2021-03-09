@@ -1,0 +1,51 @@
+<div class="progress">
+    <div class="progress--toggle-group">
+        <mat-button-toggle-group
+            name="fontStyle"
+            aria-label="Font Style"
+            (change)="selectedChanged($event)"
+            [vertical]="innerWidth >= 600"
+            [value]="currentSelectedOption">
+            <mat-button-toggle [value]="countdownOptions.Countdown">Odpočet</mat-button-toggle>
+            <mat-button-toggle [value]="countdownOptions.EndDate">Konec</mat-button-toggle>
+            <mat-button-toggle [value]="countdownOptions.Estimate">Odhad</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <div class="progress--count mat-headline">
+        <ng-container [ngSwitch]="currentSelectedOption">
+            <ng-container *ngSwitchCase="countdownOptions.Countdown">
+
+                <div class="time-left">
+                    <div>
+                        <div class="field" *ngIf="currentTimeLeft ; else spinner" >{{currentTimeLeft.days()}}</div>
+                        <div class="field mat-caption">dní</div>
+                    </div>
+                    <div>
+                        <div class="field" *ngIf="currentTimeLeft ; else spinner" >{{currentTimeLeft.hours()}}</div>
+                        <div class="field mat-caption">hodin</div>
+                    </div>
+                    <div>
+                        <div class="field" *ngIf="currentTimeLeft ; else spinner" >{{currentTimeLeft.minutes()}}</div>
+                        <div class="field mat-caption">minut</div>
+                    </div>
+                    <div>
+                        <div class="field" *ngIf="currentTimeLeft ; else spinner" >{{currentTimeLeft.seconds()}}</div>
+                        <div class="field mat-caption">sekund</div>
+                    </div>
+                </div>
+            </ng-container>
+            <div *ngSwitchCase="countdownOptions.EndDate" class="progress--count__end">
+                Velký pátek 2. dubna 23:59
+            </div>
+            <div *ngSwitchCase="countdownOptions.Estimate" class="progress--count__estimate">
+                Průměrně jsme ušli {{averageDailyDistance| number : '1.0-0'}} km za den. <br>Tímto tempem dojdeme za
+                {{(totalDistance - achievedDistance)/averageDailyDistance | number : '1.0-0'}} dní, {{finishEstimate?.locale('cs').format("D.M.")}}
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<ng-template #spinner>
+    <mat-spinner diameter="20" class="field"></mat-spinner>
+</ng-template>
