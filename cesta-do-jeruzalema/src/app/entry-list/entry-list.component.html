@@ -4,7 +4,7 @@
 </div>
 <div class="container" *ngIf="!isLoading">
     <h2 class="mat-title title">Všechny záznamy</h2>
-    <cdk-virtual-scroll-viewport itemSize="{{entries.length}}" class="viewport">
+    <cdk-virtual-scroll-viewport itemSize="56" class="viewport" >
         <ng-container *cdkVirtualFor="let entry of entries">
             <div class="entry" *ngIf="!entry.isNew">
                 <div class="entry--name mat-body-1"> {{entry.name}}</div>
