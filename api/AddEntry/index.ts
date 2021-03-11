@@ -19,7 +19,7 @@ const httpTrigger: AzureFunction = async (context: Context, req: HttpRequest): P
 
     context.bindings.entries = JSON.stringify(newEntry);
     context.res = {
-        body: { message: `Created ${newEntry.amount}km entry for ${newEntry.name}` }
+        body: { message: `Created new ${newEntry.amount}km entry for ${newEntry.name}` }
     };
     context.done();
 };
