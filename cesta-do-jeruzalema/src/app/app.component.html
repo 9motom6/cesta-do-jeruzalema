@@ -15,7 +15,12 @@
                                           [achievedPercent]="achievedPercent"></app-current-progress>
                 </mat-card>
                 <mat-card class="card  mat-elevation-z7">
-                    <app-countdown [finishEstimate]="finishEstimate" [averageDailyDistance]="averageDailyDistance" [achievedDistance]="achievedDistance"></app-countdown>
+                    <app-countdown [finishEstimate]="finishEstimate" [averageDailyDistance]="averageDailyDistance"
+                                   [achievedDistance]="achievedDistance"></app-countdown>
+                </mat-card>
+
+                <mat-card class="card  mat-elevation-z7">
+                    <app-km-in-days-bar-chart [entries$]="entries$.asObservable()"></app-km-in-days-bar-chart>
                 </mat-card>
 
                 <app-table-of-walkers [walkers]="walkers"></app-table-of-walkers>

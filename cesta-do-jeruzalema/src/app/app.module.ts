@@ -37,6 +37,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { CurrentProgressComponent } from "./current-stats/current-progress.component";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { CountdownComponent } from "./countdown/countdown.component";
+import { KmInDaysBarChartComponent } from './km-in-days-bar-chart/km-in-days-bar-chart.component';
+import {NgxChartsModule} from "@swimlane/ngx-charts";
 
 @NgModule({
     declarations: [
@@ -48,7 +50,8 @@ import { CountdownComponent } from "./countdown/countdown.component";
         AddEntryDialogComponent,
         TableOfWalkersComponent,
         CurrentProgressComponent,
-        CountdownComponent
+        CountdownComponent,
+        KmInDaysBarChartComponent
     ],
     imports: [
         BrowserModule,
@@ -79,7 +82,8 @@ import { CountdownComponent } from "./countdown/countdown.component";
         MatRippleModule,
         MatOptionModule,
         MatAutocompleteModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        NgxChartsModule
     ],
     providers: [],
     bootstrap: [ AppComponent ]

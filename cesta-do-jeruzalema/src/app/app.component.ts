@@ -24,6 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
     isLoading = true;
     finishEstimate: Moment;
     averageDailyDistance: number;
+    entries$: Subject<Entry[]> = new Subject<Entry[]>();
 
     constructor(private apiService: ApiService) {
     }
@@ -75,6 +76,7 @@ export class AppComponent implements OnInit, OnDestroy {
             this.finishEstimate = this.getFinishEstimate(this.achievedDistance);
 
             this.walkers = this.getWalkersFromEntries(entries);
+            this.entries$.next(entries);
             this.isLoading = false;
         });
     }
