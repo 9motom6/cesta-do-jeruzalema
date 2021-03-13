@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ApiService} from "./api.service";
 import {takeUntil} from "rxjs/operators";
-import {Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {Entry, Walker} from "./models";
 import {START_DATE, TOTAL_DISTANCE} from "./constants";
 import * as moment from "moment";
@@ -25,6 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
     finishEstimate: Moment;
     averageDailyDistance: number;
     entries$: Subject<Entry[]> = new Subject<Entry[]>();
+    onSidebarOpenChange$: Subject<void> = new Subject<void>();
 
     constructor(private apiService: ApiService) {
     }

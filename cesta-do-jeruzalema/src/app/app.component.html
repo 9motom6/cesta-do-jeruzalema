@@ -5,7 +5,7 @@
     </div>
     <div class="main-content-wrapper">
         <mat-sidenav-container>
-            <mat-sidenav appResponsiveSidenav [permanentAt]="960" #sidenav role="navigation">
+            <mat-sidenav appResponsiveSidenav [permanentAt]="960" #sidenav role="navigation" (openedChange)="onSidebarOpenChange$.next()">
                 <app-entry-list [entries]="entries" [isLoading]="isLoading"></app-entry-list>
             </mat-sidenav>
             <mat-sidenav-content class="content">
@@ -20,7 +20,7 @@
                 </mat-card>
 
                 <mat-card class="card  mat-elevation-z7">
-                    <app-km-in-days-bar-chart [entries$]="entries$.asObservable()"></app-km-in-days-bar-chart>
+                    <app-km-in-days-bar-chart [entries$]="entries$.asObservable()" [onSidebarOpenChange$]="onSidebarOpenChange$.asObservable()"></app-km-in-days-bar-chart>
                 </mat-card>
 
                 <app-table-of-walkers [walkers]="walkers"></app-table-of-walkers>
