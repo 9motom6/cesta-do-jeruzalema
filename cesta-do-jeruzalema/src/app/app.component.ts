@@ -84,6 +84,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     private getFinishEstimate(achievedDistance: number): Moment {
         this.averageDailyDistance = achievedDistance / moment().diff(moment(START_DATE), "days") + 1;
-        return moment().add(TOTAL_DISTANCE / this.averageDailyDistance, "days");
+        return moment().add((TOTAL_DISTANCE - achievedDistance) / this.averageDailyDistance, "days");
     }
 }
