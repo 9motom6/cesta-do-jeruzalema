@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild} from "@angular/core";
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import {Observable, Subject} from "rxjs";
 import {Entry} from "../models";
 import {takeUntil} from "rxjs/operators";
@@ -42,7 +42,7 @@ export class KmInDaysBarChartComponent implements OnInit, OnDestroy, AfterViewIn
         domain: [ "#3f51b5" ]
     };
 
-    constructor() {
+    constructor(private cd: ChangeDetectorRef) {
     }
 
     ngOnInit(): void {
@@ -77,9 +77,9 @@ export class KmInDaysBarChartComponent implements OnInit, OnDestroy, AfterViewIn
         this.updateChartSize();
     }
 
-
     private updateChartSize(): void {
-        this.view = [ this.elementView.nativeElement.offsetWidth, 300 ];
+        this.view = [ this.elementView?.nativeElement.offsetWidth, 300 ];
+        this.cd.detectChanges();
     }
 
     ngOnDestroy(): void {

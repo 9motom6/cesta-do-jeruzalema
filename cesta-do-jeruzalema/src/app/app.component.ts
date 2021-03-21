@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ApiService} from "./api.service";
 import {takeUntil} from "rxjs/operators";
-import {Observable, Subject} from "rxjs";
+import {Subject} from "rxjs";
 import {Entry, Walker} from "./models";
 import {START_DATE, TOTAL_DISTANCE} from "./constants";
 import * as moment from "moment";

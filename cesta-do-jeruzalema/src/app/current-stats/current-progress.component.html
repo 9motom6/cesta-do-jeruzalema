@@ -14,17 +14,30 @@
 
     <div class="progress--count mat-headline">
         <ng-container [ngSwitch]="currentSelectedOption">
-            <ng-container *ngSwitchCase="progressOptions.Sum">
-                Ušli&nbsp;jsme <br *ngIf="innerWidth >= 600">
-                {{achievedDistance  | number:'1.0-0'}}&nbsp;z&nbsp;{{totalDistance}}&nbsp;km
-            </ng-container>
+            <div class="chart-wrapper" *ngSwitchCase="progressOptions.Sum" #chart>
+                <ngx-charts-linear-gauge
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [value]="achievedDistance "
+                    [previousValue]="totalDistance"
+                    [max]="max"
+                    [units]="units"
+                    [valueFormatting]="unitFormatterFn">
+                </ngx-charts-linear-gauge>
+            </div>
             <ng-container *ngSwitchCase="progressOptions.Percent">
                 Ušli&nbsp;jsme <br *ngIf="innerWidth >= 600">
                 {{achievedPercent | number:'1.0-2'}}&nbsp;% cesty
             </ng-container>
             <ng-container *ngSwitchCase="progressOptions.Missing">
-                Zbývá ujít <br *ngIf="innerWidth >= 600">
-                {{totalDistance - achievedDistance}} km
+                <ng-container *ngIf="(totalDistance - achievedDistance) > 0">
+                    Zbývá ujít <br *ngIf="innerWidth >= 600">
+                    {{totalDistance - achievedDistance}} km
+                </ng-container>
+                <ng-container *ngIf="(totalDistance - achievedDistance) < 0">
+                    Ušli jsme<br *ngIf="innerWidth >= 600">
+                    {{achievedDistance - totalDistance}} km navíc
+                </ng-container>
             </ng-container>
         </ng-container>
     </div>

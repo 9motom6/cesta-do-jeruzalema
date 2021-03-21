@@ -1,25 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from "@angular/core/testing";
 
-import { TableOfWalkersComponent } from './table-of-walkers.component';
+import {TableOfWalkersComponent} from "./table-of-walkers.component";
 
-describe('TableOfWalkersComponent', () => {
-  let component: TableOfWalkersComponent;
-  let fixture: ComponentFixture<TableOfWalkersComponent>;
+describe("TableOfWalkersComponent", () => {
+    let component: TableOfWalkersComponent;
+    let fixture: ComponentFixture<TableOfWalkersComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ TableOfWalkersComponent ]
-    })
-    .compileComponents();
-  });
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [ TableOfWalkersComponent ]
+        })
+            .compileComponents();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TableOfWalkersComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(TableOfWalkersComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it("should create", () => {
+        expect(component).toBeTruthy();
+    });
 });

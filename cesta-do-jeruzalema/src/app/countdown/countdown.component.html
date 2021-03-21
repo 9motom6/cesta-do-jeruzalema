@@ -39,8 +39,7 @@
                 Velký pátek 2. dubna 23:59
             </div>
             <div *ngSwitchCase="countdownOptions.Estimate" class="progress--count__estimate">
-                Průměrně jsme ušli {{averageDailyDistance| number : '1.0-0'}} km za den. <br>Tímto tempem dojdeme za
-                {{(totalDistance - achievedDistance)/averageDailyDistance | number : '1.0-0'}} dní, {{finishEstimate?.locale('cs').format("D.M.")}}
+                Průměrně jsme ušli {{averageDailyDistance| number : '1.0-0'}} km za den. <br>Tímto tempem dojdeme {{finishEstimate?.locale('cs').format("D.M.")}}
             </div>
         </ng-container>
     </div>

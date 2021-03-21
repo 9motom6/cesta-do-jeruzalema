@@ -12,12 +12,13 @@ export class TableOfWalkersComponent implements OnInit, OnChanges, AfterViewInit
 
     @Input()
     walkers: Walker[];
-    displayedColumns: string[] = ["name", "amount", "longest"];
+    displayedColumns: string[] = [ "name", "amount", "longest" ];
 
     @ViewChild(MatSort)
     sort: MatSort;
 
     dataSource = new MatTableDataSource([]);
+
     constructor() {
     }
 
