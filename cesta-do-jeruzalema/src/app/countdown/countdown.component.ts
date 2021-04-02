@@ -23,7 +23,7 @@ export class CountdownComponent implements OnInit {
     currentSelectedOption: CountdownOptions = CountdownOptions.Countdown;
     innerWidth: number;
     currentTimeLeft: Duration;
-
+    interval;
     @Input()
     achievedDistance = 0;
 
@@ -44,8 +44,12 @@ export class CountdownComponent implements OnInit {
     ngOnInit(): void {
         this.innerWidth = window.innerWidth;
 
-        setInterval(() => {
+        this.interval = setInterval(() => {
             this.currentTimeLeft = moment.duration(-moment().diff(END_DATE));
+            if (this.currentTimeLeft < moment.duration(0)) {
+                this.currentTimeLeft = moment.duration(0);
+                clearInterval(this.interval);
+            }
         }, 1000);
     }
 
