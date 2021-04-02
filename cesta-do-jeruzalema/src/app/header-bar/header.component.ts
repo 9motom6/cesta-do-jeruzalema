@@ -5,6 +5,7 @@ import {ApiService} from "../api.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddEntryDialogComponent} from "../add-entry-dialog/add-entry-dialog.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {END_DATE} from "../constants";
 
 @Component({
     selector: "app-header",
@@ -46,6 +47,11 @@ export class HeaderComponent implements OnInit {
     }
 
     openDialog(): void {
+        if (Date.now().valueOf() > END_DATE.valueOf()) {
+            this.showTimeoutSnackBar();
+            return;
+        }
+
         const dialogRef = this.dialog.open(AddEntryDialogComponent, {
             width: "300px",
             data: this.walkers.map((walker) => walker.name)
@@ -61,12 +67,24 @@ export class HeaderComponent implements OnInit {
                     this.refreshEmitter.emit();
                 }, (error: any) => {
                     console.error(error);
+                    if (error?.error?.message === "Time is up!") {
+                        this.showTimeoutSnackBar();
+                        return;
+                    }
                     this.snackBar.open(`Nepodařilo se uložit záznam`, "Ok", {
                         duration: 10000,
                         panelClass: [ "error" ]
                     });
                 });
             }
+        });
+    }
+
+    private showTimeoutSnackBar(): void {
+        this.snackBar.open(`Cesta do Jeruzaléma skončila a nelze přidávat další záznamy.`, "Ok", {
+            duration: 10000,
+            panelClass: [ "error" ],
+            verticalPosition: "top"
         });
     }
 }

@@ -8,6 +8,14 @@ interface Entry {
 const httpTrigger: AzureFunction = async (context: Context, req: HttpRequest): Promise<void> => {
     console.log("Create new entry HTTP Function called" + req);
 
+    if (Date.now().valueOf() > new Date(2021, 3, 2, 24, 60, 0).valueOf()) {
+        context.res = {
+            status: 400,
+            body: { message: "Time is up!" }
+        };
+        return;
+    }
+
     const newEntry: Entry = req.body;
     if (!isEntryValid(newEntry)) {
         context.res = {
