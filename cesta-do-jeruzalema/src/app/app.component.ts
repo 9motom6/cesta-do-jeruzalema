@@ -3,7 +3,7 @@ import {ApiService} from "./api.service";
 import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs";
 import {Entry, Walker} from "./models";
-import {START_DATE, TOTAL_DISTANCE} from "./constants";
+import {END_DATE, START_DATE, TOTAL_DISTANCE} from "./constants";
 import * as moment from "moment";
 import {Moment} from "moment";
 
@@ -83,7 +83,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     private getFinishEstimate(achievedDistance: number): Moment {
-        this.averageDailyDistance = achievedDistance / moment().diff(moment(START_DATE), "days") + 1;
+        this.averageDailyDistance = achievedDistance / moment(END_DATE).diff(moment(START_DATE), "days") + 1;
         return moment().add((TOTAL_DISTANCE - achievedDistance) / this.averageDailyDistance, "days");
     }
 }
